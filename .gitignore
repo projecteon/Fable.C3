@@ -1,0 +1,13 @@
+.fable/
+.fake/
+.vs/
+obj/
+bin/
+packages/
+paket-files/
+node_modules/
+src/Fable.C3/public/js/
+release.cmd
+release.sh
+*.DotSettings.user
+deploy

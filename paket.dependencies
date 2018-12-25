@@ -1,0 +1,28 @@
+group Fable.C3
+    source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
+    storage: none
+
+    clitool dotnet-Fable
+    nuget Fable.Core
+
+group Fable.C3.React
+    source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
+    storage: none
+
+    clitool dotnet-Fable
+    nuget Fable.Core
+    nuget Fable.Import.Browser
+    nuget Fable.React
+
+group Build
+    source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
+    storage: none
+
+    nuget FSharp.Core
+    nuget Fake.Core.Target
+    nuget Fake.DotNet.Cli
+    nuget Fake.IO.FileSystem
+    nuget FAKE
