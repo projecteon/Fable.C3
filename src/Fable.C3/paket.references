@@ -1,2 +1,3 @@
 group Fable.C3
   Fable.Core
+  Fable.Import.Browser

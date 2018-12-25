@@ -5,6 +5,7 @@ group Fable.C3
 
     clitool dotnet-Fable
     nuget Fable.Core
+    nuget Fable.Import.Browser
 
 group Fable.C3.React
     source https://api.nuget.org/v3/index.json
