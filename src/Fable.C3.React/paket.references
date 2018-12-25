@@ -1,0 +1,4 @@
+group Fable.C3.React
+  Fable.Core
+  Fable.Import.Browser
+  Fable.React

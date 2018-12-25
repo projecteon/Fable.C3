@@ -1,0 +1,52 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\PuTTY\;C:\Program Files (x86)\LINQPad5;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\dotnet\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Users\aleksander.spro\AppData\Local\Microsoft\WindowsApps;C:\Users\aleksander.spro\AppData\Local\Programs\Git\cmd;C:\Users\aleksander.spro\AppData\Local\GitHubDesktop\bin;C:\Users\aleksander.spro\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Users\aleksander.spro\AppData\Local\Microsoft\WindowsApps;C:\Setup\JavaLib;C:\Users\aleksander.spro\.m2\repository;C:\Users\aleksander.spro\AppData\Local\Yarn\bin;C:\Users\aleksander.spro\.dotnet\tools;C:\Users\aleksander.spro\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\aleksander.spro\AppData\Local\hyper\app-2.1.0\resources\bin
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  8.11.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\src\projecteon\Fable.C3\src\Fable.C3.Sample\package.json: Unexpected token } in JSON at position 400
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1130:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:98:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:109:13
+      at <anonymous>
+
+npm manifest: 
+  {
+    "private": true,
+    "scripts": {
+      "start": "webpack-dev-server"
+    },
+  
+  "dependencies": {
+    "c3": "0.6.11",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  },
+    "devDependencies": {
+      "@babel/core": "^7.1.2",
+      "babel-loader": "^8.0.0",
+      "fable-compiler": "^2.1.8",
+      "fable-loader": "^2.1.1",
+      "webpack": "^4.27.1",
+      "webpack-cli": "^3.1.2",
+      "webpack-dev-server": "^3.1.10",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

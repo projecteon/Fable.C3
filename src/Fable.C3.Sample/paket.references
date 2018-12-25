@@ -1,0 +1,4 @@
+group Fable.C3.Sample
+  Fable.Core
+  Fable.Elmish.React
+  Fable.Import.Browser

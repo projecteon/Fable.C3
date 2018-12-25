@@ -17,6 +17,16 @@ group Fable.C3.React
     nuget Fable.Import.Browser
     nuget Fable.React
 
+group Fable.C3.Sample
+    source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
+    storage: none
+
+    clitool dotnet-Fable
+    nuget Fable.Core
+    nuget Fable.Import.Browser
+    nuget Fable.Elmish.React
+
 group Build
     source https://api.nuget.org/v3/index.json
     framework: netstandard2.0
