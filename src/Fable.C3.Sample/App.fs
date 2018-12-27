@@ -13,13 +13,12 @@ open Fable.Helpers.React.Props
 open Fable.Import
 
 open Fable.C3.Sample.Data
-
 // MODEL
 
 type Model = {
   counter: int
   chart: Fable.C3.ChartAPI option
-  data: Fable.C3.Data option
+  data: Fable.C3.Data
 }
 
 type Msg =
@@ -32,7 +31,7 @@ let init arg =
   let defaultModel = {
     counter = 1
     chart = None
-    data = Some BarData
+    data = BarData
   }
   defaultModel, Cmd.none
 
@@ -56,18 +55,14 @@ let update (msg:Msg) (model:Model) =
   match msg with
   | Increment -> { model with counter = model.counter + 1 }, changeData (model.counter + 1)
   | Decrement -> { model with counter = model.counter - 1 }, changeData (model.counter - 1)
-  | LoadChart node ->
-    match model.data with
-    | Some data ->
-      { model with chart = Some (loadChart node data)}, Cmd.none
-    | None -> model, Cmd.none
+  | LoadChart node -> { model with chart = Some (loadChart node model.data)}, Cmd.none
   | LoadData data ->
     match model.chart with
     | Some chart ->
-      let api: Fable.C3.ChartAPILoadArgs = {columns = data.columns; ``type`` = Some "bar"; rows = None}
+      let api: Fable.C3.ChartAPILoadArgs = {columns = data.columns; ``type`` = Some "bar"; rows = None; unload = None}
       updateChart chart api |> ignore
-      { model with data = Some data }, Cmd.none
-    | None -> { model with data = Some data }, Cmd.none
+      { model with data = data }, Cmd.none
+    | None -> { model with data = data }, Cmd.none
 
 // let chart node data = Fable.C3.c3.generate({bindto = node; data = data})
 
@@ -82,17 +77,20 @@ let view (model:Model) dispatch =
       br []
       br []
     ]
-    div [
-      Id "chart"
-      Ref (fun element ->
-        // printf "%O" element
-        // dispatch (Msg.LoadChart (Some (U2.Case2 (element :?> Browser.HTMLElement))))
-        match model.chart with
-        | None -> dispatch (Msg.LoadChart (Some (U2.Case2 (element :?> Browser.HTMLElement)))) |> ignore
-        | Some x -> printf "chart elements are equal: %b" ((element :?> Browser.HTMLElement) = x.element)
-        // chart (Some (U2.Case2 (element :?> Browser.HTMLElement))) BarData |> ignore
-      )
-    ][]
+    div [][
+      Fable.C3.React.chart { data = model.data }
+    ]
+    // div [
+    //   Id "chart"
+    //   Ref (fun element ->
+    //     // printf "%O" element
+    //     // dispatch (Msg.LoadChart (Some (U2.Case2 (element :?> Browser.HTMLElement))))
+    //     match model.chart with
+    //     | None -> dispatch (Msg.LoadChart (Some (U2.Case2 (element :?> Browser.HTMLElement)))) |> ignore
+    //     | Some x -> printf "chart elements are equal: %b" ((element :?> Browser.HTMLElement) = x.element)
+    //     // chart (Some (U2.Case2 (element :?> Browser.HTMLElement))) BarData |> ignore
+    //   )
+    // ][]
   ]
 
 // App

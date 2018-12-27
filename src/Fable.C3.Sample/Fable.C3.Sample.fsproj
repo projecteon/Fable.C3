@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../Fable.C3/Fable.C3.fsproj" />
+    <ProjectReference Include="../Fable.C3.React/Fable.C3.React.fsproj" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

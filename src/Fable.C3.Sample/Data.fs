@@ -28,17 +28,15 @@ let row4: PrimitiveArray =
 
 let BarData: Data = {
   columns = Some (ResizeArray [| row1; row2; |])
-  ``type`` = Some "bar"
+  ``type`` = Some ChartType.Bar
 }
 
 let NewBarData: Data = {
   columns = Some (ResizeArray [| row1; row2; row3; row4 |])
-  ``type`` = Some "bar"
+  ``type`` = Some ChartType.Bar
 }
 
-// let Data: Data =
-//   columns = [
-//     Some ["data1", 30, 200, 100, 400, 150, 250]
-//     Some ["data2", 130, 100, 140, 200, 150, 50]
-//   ]
-//   type = 'bar'
+let NewBarData2: Data = {
+  columns = Some (ResizeArray [| row3; row4 |])
+  ``type`` = Some ChartType.Bar
+}

@@ -4,7 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Library.fs" />
+    <Compile Include="Chart.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Fable.C3/Fable.C3.fsproj" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

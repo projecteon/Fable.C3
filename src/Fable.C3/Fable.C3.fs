@@ -4,6 +4,21 @@ open Fable.Core
 open Fable.Import.JS
 open Fable.Import.Browser
 
+[<StringEnum>]
+[<RequireQualifiedAccess>]
+type ChartType =
+  | Line
+  | Spline
+  | Step
+  | Area
+  | [<CompiledName("area-spline")>] AreaSpline
+  | [<CompiledName("area-step")>] AreaStep
+  | Bar
+  | Scatter
+  | Pie
+  | Donut
+  | Gauge
+
 type ArrayOrString =
   U2<ResizeArray<string>, string>
 
@@ -15,7 +30,7 @@ type PrimitiveArray =
 
 type Data = {
   columns: ResizeArray<PrimitiveArray> option
-  ``type``: string option
+  ``type``: ChartType option
 }
 
 type ChartConfiguration = {
@@ -26,12 +41,13 @@ type ChartConfiguration = {
 type ChartAPILoadArgs = {
   columns: ResizeArray<PrimitiveArray> option
   rows: ResizeArray<PrimitiveArray> option
-  ``type``: string option
+  ``type``: ChartType option
+  unload: bool option
 }
 
 type [<AllowNullLiteral>] ChartAPI =
   abstract load: args: ChartAPILoadArgs -> unit
-  abstract unload: ?targetIds: TargetIds * ?``done``: (unit -> obj option) -> obj option
+  abstract unload: unit -> unit
   abstract destroy: unit -> unit
   abstract element: HTMLElement
 
