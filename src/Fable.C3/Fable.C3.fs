@@ -23,14 +23,17 @@ type ChartConfiguration = {
   data: Data
 }
 
-type [<AllowNullLiteral>] ChartAPILoadArgs =
-  abstract columns: ResizeArray<PrimitiveArray> option with get, set
-
+type ChartAPILoadArgs = {
+  columns: ResizeArray<PrimitiveArray> option
+  rows: ResizeArray<PrimitiveArray> option
+  ``type``: string option
+}
 
 type [<AllowNullLiteral>] ChartAPI =
   abstract load: args: ChartAPILoadArgs -> unit
   abstract unload: ?targetIds: TargetIds * ?``done``: (unit -> obj option) -> obj option
   abstract destroy: unit -> unit
+  abstract element: HTMLElement
 
 type [<AllowNullLiteral>] IExports =
   abstract generate: config: ChartConfiguration -> ChartAPI
