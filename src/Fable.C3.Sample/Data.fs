@@ -19,9 +19,20 @@ let row1: PrimitiveArray =
 let row2: PrimitiveArray =
   [|Some (!^ "data2"); primitiveFloat 130.0; primitiveFloat 100.0; primitiveFloat 140.0; primitiveFloat 200.0; primitiveFloat 150.0; primitiveFloat 50.0 |]
 
+let row3: PrimitiveArray =
+  [|Some (!^ "data3"); primitiveFloat 130.0; primitiveFloat 100.0; primitiveFloat 140.0; primitiveFloat 200.0; primitiveFloat 150.0; primitiveFloat 50.0 |]
+
+let row4: PrimitiveArray =
+  [|Some (!^ "data4"); primitiveFloat 130.0; primitiveFloat 100.0; primitiveFloat 140.0; primitiveFloat 200.0; primitiveFloat 150.0; primitiveFloat 50.0 |]
+
 
 let BarData: Data = {
-  columns = Some (ResizeArray [| row1; row2 |])
+  columns = Some (ResizeArray [| row1; row2; |])
+  ``type`` = Some "bar"
+}
+
+let NewBarData: Data = {
+  columns = Some (ResizeArray [| row1; row2; row3; row4 |])
   ``type`` = Some "bar"
 }
 
