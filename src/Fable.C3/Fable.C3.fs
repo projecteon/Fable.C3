@@ -40,9 +40,8 @@ type ChartConfiguration = {
 
 type ChartAPILoadArgs = {
   columns: ResizeArray<PrimitiveArray> option
-  rows: ResizeArray<PrimitiveArray> option
   ``type``: ChartType option
-  unload: bool option
+  unload: U3<string, bool, float> array
 }
 
 type [<AllowNullLiteral>] ChartAPI =

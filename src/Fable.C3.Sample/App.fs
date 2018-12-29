@@ -13,63 +13,50 @@ open Fable.Helpers.React.Props
 open Fable.Import
 
 open Fable.C3.Sample.Data
+open Fable.C3
 // MODEL
 
 type Model = {
   counter: int
-  chart: Fable.C3.ChartAPI option
-  data: Fable.C3.Data
+  data: Data
 }
 
 type Msg =
 | Increment
 | Decrement
-| LoadData of Fable.C3.Data
-| LoadChart of U2<string, Browser.HTMLElement> option
+| LoadData of Data
 
 let init arg =
   let defaultModel = {
     counter = 1
-    chart = None
     data = BarData
   }
   defaultModel, Cmd.none
 
+let morphType counter (data: Data) : Data =
+  printf "morphType %i" (counter%3)
+  match counter%3 with
+  | 0 -> { data with ``type`` = Some Fable.C3.ChartType.Pie }
+  | _ -> { data with ``type`` = Some Fable.C3.ChartType.Bar }
 
-let loadChart node data =
-  Fable.C3.c3.generate({bindto = node; data = data})
-
-let updateChart (chart: Fable.C3.ChartAPI) data =
-  data
-  |> chart.load
-  |> ignore
 
 let changeData counter =
-  printf "%i" (counter%2)
+  printf "changeData %i" (counter%2)
   match counter%2 with
-  | 0 -> Cmd.ofMsg (LoadData NewBarData)
-  | _ -> Cmd.ofMsg (LoadData BarData)
+  | 0 -> Cmd.ofMsg (LoadData (morphType counter NewBarData))
+  | _ -> Cmd.ofMsg (LoadData (morphType counter BarData))
 
 // UPDATE
 let update (msg:Msg) (model:Model) =
   match msg with
   | Increment -> { model with counter = model.counter + 1 }, changeData (model.counter + 1)
   | Decrement -> { model with counter = model.counter - 1 }, changeData (model.counter - 1)
-  | LoadChart node -> { model with chart = Some (loadChart node model.data)}, Cmd.none
-  | LoadData data ->
-    match model.chart with
-    | Some chart ->
-      let api: Fable.C3.ChartAPILoadArgs = {columns = data.columns; ``type`` = Some "bar"; rows = None; unload = None}
-      updateChart chart api |> ignore
-      { model with data = data }, Cmd.none
-    | None -> { model with data = data }, Cmd.none
-
-// let chart node data = Fable.C3.c3.generate({bindto = node; data = data})
+  | LoadData data -> { model with data = data }, Cmd.none
 
 // VIEW (rendered with React)
 // https://stackoverflow.com/questions/52669221/in-fable-elmish-how-to-trigger-a-command-after-the-view-has-been-rendered
 let view (model:Model) dispatch =
-  div [ Style [Height 400] ] [
+  div [ Style [ Height 400 ] ] [
     div [][
       button [ OnClick (fun _ -> dispatch Increment) ] [ str "+" ]
       div [] [ str (string model.counter) ]
@@ -78,19 +65,8 @@ let view (model:Model) dispatch =
       br []
     ]
     div [][
-      Fable.C3.React.chart { data = model.data }
+      Fable.C3.React.chart { data = model.data; }
     ]
-    // div [
-    //   Id "chart"
-    //   Ref (fun element ->
-    //     // printf "%O" element
-    //     // dispatch (Msg.LoadChart (Some (U2.Case2 (element :?> Browser.HTMLElement))))
-    //     match model.chart with
-    //     | None -> dispatch (Msg.LoadChart (Some (U2.Case2 (element :?> Browser.HTMLElement)))) |> ignore
-    //     | Some x -> printf "chart elements are equal: %b" ((element :?> Browser.HTMLElement) = x.element)
-    //     // chart (Some (U2.Case2 (element :?> Browser.HTMLElement))) BarData |> ignore
-    //   )
-    // ][]
   ]
 
 // App

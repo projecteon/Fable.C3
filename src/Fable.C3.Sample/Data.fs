@@ -40,3 +40,5 @@ let NewBarData2: Data = {
   columns = Some (ResizeArray [| row3; row4 |])
   ``type`` = Some ChartType.Bar
 }
+
+// https://stackoverflow.com/questions/21389733/comparing-two-lists-for-unique-items-in-each
