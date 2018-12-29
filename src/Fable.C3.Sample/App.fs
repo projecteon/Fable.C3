@@ -1,16 +1,9 @@
 module Fable.C3.Sample.App
 
-(**
- The famous Increment/Decrement ported from Elm.
- You can find more info about Emish architecture and samples at https://elmish.github.io/
-*)
-
 open Elmish
 open Elmish.React
-open Fable.Core
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
-open Fable.Import
 
 open Fable.C3.Sample.Data
 open Fable.C3

@@ -1,7 +1,6 @@
 module Fable.C3.React
 
 open Fable.Core
-open Fable.Core.JsInterop
 open Fable.Import
 open Fable.Import.Browser
 open Fable.Import.React

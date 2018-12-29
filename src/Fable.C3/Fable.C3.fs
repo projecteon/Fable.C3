@@ -1,7 +1,6 @@
 module Fable.C3
-open System
+
 open Fable.Core
-open Fable.Import.JS
 open Fable.Import.Browser
 
 [<StringEnum>]
