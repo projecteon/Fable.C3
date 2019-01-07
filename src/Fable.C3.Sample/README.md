@@ -1,4 +1,4 @@
-# Fable.C3.Sapole
+# Fable.C3.Sample
 
 Sample code for how to use [Fable.C3.React](../Fable.C3.React/) component.
 
