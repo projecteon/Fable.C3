@@ -11,3 +11,4 @@ release.cmd
 release.sh
 *.DotSettings.user
 deploy
+yarn-error.log
