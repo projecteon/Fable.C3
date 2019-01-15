@@ -1,11 +1,8 @@
 module Fable.C3.Sample.Data
 
-open System
-open Fable
 open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Import.JS
-open C3
+open Fable.C3
 
 let primitiveFloat (value: float): U3<string, bool, float> option =
   Some (U3.Case3 value)

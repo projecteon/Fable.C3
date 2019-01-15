@@ -32,9 +32,21 @@ type Data = {
   ``type``: ChartType option
 }
 
+type XAxisConfiguration = {
+  ``type``: string option
+  categories: ResizeArray<string> option
+}
+
+type Axis = {
+    /// Switch x and y axis position.
+    rotated: bool option
+    x: XAxisConfiguration
+}
+
 type ChartConfiguration = {
   bindto: U2<string, HTMLElement> option
   data: Data
+  axis: Axis option
 }
 
 type ChartAPILoadArgs = {
@@ -43,11 +55,19 @@ type ChartAPILoadArgs = {
   unload: U3<string, bool, float> array
 }
 
+type ChartAPIResizeSize = {
+  width: float option
+  height: float option
+}
+
 type [<AllowNullLiteral>] ChartAPI =
   abstract load: args: ChartAPILoadArgs -> unit
   abstract unload: unit -> unit
   abstract destroy: unit -> unit
   abstract element: HTMLElement
+  abstract transform: ``type``: string * ?targetIds: ArrayOrString -> unit
+  abstract resize: ?size: ChartAPIResizeSize -> unit
+  abstract flush: unit -> unit
 
 type [<AllowNullLiteral>] IExports =
   abstract generate: config: ChartConfiguration -> ChartAPI

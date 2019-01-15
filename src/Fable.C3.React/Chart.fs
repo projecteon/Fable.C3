@@ -10,15 +10,17 @@ open Fable.C3
 
 type ChartProps = {
   data: Data
+  axis: Axis option
+  height: int
 }
 
 type Chart(initialProps) =
   inherit PureComponent<ChartProps, obj>(initialProps)
-  let mutable chart: Fable.C3.ChartAPI option =  None
+  let mutable chart: ChartAPI option =  None
   let mutable chartElement: Browser.HTMLElement option =  None
 
   member this.generateChart config =
-    chart <- Some (Fable.C3.c3.generate config)
+    chart <- Some (c3.generate config)
 
   member this.destroyChart() =
     match chart with
@@ -37,20 +39,22 @@ type Chart(initialProps) =
 
   member this.getColumnNames (columnData: ResizeArray<PrimitiveArray> option) =
     match columnData with
-    | None -> [||]
+    | None -> Array.empty
     | Some arr ->
       (arr.ToArray())
       |> Array.map (fun x -> x.[0])
       |> Array.choose id
 
   member this.getColumnDiff prevProps props =
-    let L = set (this.getColumnNames prevProps.data.columns)
-    let R = set (this.getColumnNames props.data.columns)
-    L - R |> Set.toArray
+    if prevProps = props then Array.empty
+    else
+      let L = set (this.getColumnNames prevProps.data.columns)
+      let R = set (this.getColumnNames props.data.columns)
+      L - R |> Set.toArray
 
   override this.componentDidMount() =
     match chartElement with
-    | Some element -> chart <- Some ({bindto = Some (U2.Case2 element); data = this.props.data} |> Fable.C3.c3.generate)
+    | Some element -> chart <- Some ({bindto = Some (U2.Case2 element); data = this.props.data; axis = this.props.axis} |> c3.generate)
     | None -> ()
 
   //https://developmentarc.gitbooks.io/react-indepth/content/life_cycle/update/postrender_with_componentdidupdate.html
@@ -69,6 +73,6 @@ type Chart(initialProps) =
     this.destroyChart()
 
   override this.render() =
-    div [ Ref this.mountedElement ] [ ]
+    div [ Ref this.mountedElement; Style [ Height this.props.height; MaxHeight this.props.height ] ] [ ]
 
 let inline chart props = ofType<Chart,_,_> props []

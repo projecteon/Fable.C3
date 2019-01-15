@@ -58,7 +58,7 @@ let view (model:Model) dispatch =
       br []
     ]
     div [][
-      Fable.C3.React.chart { data = model.data; }
+      Fable.C3.React.chart { data = model.data; axis = None; height = 600 }
     ]
   ]
 
