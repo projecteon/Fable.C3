@@ -29,8 +29,8 @@ let init arg =
 let morphType counter (data: Data) : Data =
   printf "morphType %i" (counter%3)
   match counter%3 with
-  | 0 -> { data with ``type`` = Some Fable.C3.ChartType.Pie }
-  | _ -> { data with ``type`` = Some Fable.C3.ChartType.Bar }
+  | 0 -> { data with ``type`` = Some ChartType.Pie }
+  | _ -> { data with ``type`` = Some ChartType.Bar }
 
 
 let changeData counter =
@@ -58,7 +58,7 @@ let view (model:Model) dispatch =
       br []
     ]
     div [][
-      Fable.C3.React.chart { data = model.data; axis = None; height = 600 }
+      React.chart { data = model.data; axis = None; height = 600 }
     ]
   ]
 
