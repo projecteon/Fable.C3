@@ -1,5 +1,5 @@
 namespace Fable.C3
-
+open System
 open Fable.Core
 open Fable.Import.Browser
 
@@ -32,11 +32,19 @@ module Defintiion =
   type Data = {
     columns: ResizeArray<PrimitiveArray> option
     ``type``: ChartType option
+    x: string option
+  }
+
+
+  type XTickConfiguration = {
+    format: U2<string, (U2<float, DateTime> -> U2<string, float>)> option
+    values: U2<ResizeArray<float>, ResizeArray<string>> option
   }
 
   type XAxisConfiguration = {
     ``type``: string option
     categories: ResizeArray<string> option
+    tick: XTickConfiguration option
   }
 
   type Axis = {

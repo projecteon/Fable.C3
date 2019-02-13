@@ -47,7 +47,7 @@ module React =
         |> Array.choose id
 
     member this.getColumnDiff prevProps props =
-      if prevProps = props then Array.empty
+      if prevProps.data = props.data then Array.empty
       else
         let L = set (this.getColumnNames prevProps.data.columns)
         let R = set (this.getColumnNames props.data.columns)
@@ -60,7 +60,7 @@ module React =
 
     //https://developmentarc.gitbooks.io/react-indepth/content/life_cycle/update/postrender_with_componentdidupdate.html
     override this.componentDidUpdate(prevProps, prevState) =
-      if prevProps <> this.props then
+      if prevProps.data <> this.props.data then
         match chart with
         | Some x ->
           x.load {

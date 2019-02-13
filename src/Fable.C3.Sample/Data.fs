@@ -26,16 +26,19 @@ let row4: PrimitiveArray =
 let BarData: Data = {
   columns = Some (ResizeArray [| row1; row2; |])
   ``type`` = Some ChartType.Bar
+  x = None
 }
 
 let NewBarData: Data = {
   columns = Some (ResizeArray [| row1; row2; row3; row4 |])
   ``type`` = Some ChartType.Bar
+  x = None
 }
 
 let NewBarData2: Data = {
   columns = Some (ResizeArray [| row3; row4 |])
   ``type`` = Some ChartType.Bar
+  x = None
 }
 
 // https://stackoverflow.com/questions/21389733/comparing-two-lists-for-unique-items-in-each
