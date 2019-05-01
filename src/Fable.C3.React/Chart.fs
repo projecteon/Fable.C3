@@ -47,7 +47,7 @@ module React =
         |> Array.choose id
 
     member this.getColumnDiff prevProps props =
-      if prevProps.data = props.data then Array.empty
+      if obj.ReferenceEquals(prevProps, props) then Array.empty
       else
         let L = set (this.getColumnNames prevProps.data.columns)
         let R = set (this.getColumnNames props.data.columns)
@@ -60,7 +60,7 @@ module React =
 
     //https://developmentarc.gitbooks.io/react-indepth/content/life_cycle/update/postrender_with_componentdidupdate.html
     override this.componentDidUpdate(prevProps, prevState) =
-      if prevProps.data <> this.props.data then
+      if  not (obj.ReferenceEquals(prevProps, this.props)) then
         match chart with
         | Some x ->
           x.load {
@@ -74,6 +74,6 @@ module React =
       this.destroyChart()
 
     override this.render() =
-      div [ Ref this.mountedElement; Style [ Height this.props.height; MaxHeight this.props.height ] ] [ ]
+      div [ Ref this.mountedElement; Style [ Height this.props.height; MaxHeight this.props.height; MaxWidth "100%" ] ] [ ]
 
   let inline chart props = ofType<Chart,_,_> props []
