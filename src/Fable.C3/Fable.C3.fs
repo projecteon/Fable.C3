@@ -35,10 +35,14 @@ module Defintiion =
     x: string option
   }
 
+  type CullingConfiguration = {
+    max: float
+  }
 
   type XTickConfiguration = {
     format: U2<string, (U2<float, DateTime> -> U2<string, float>)> option
     values: U2<ResizeArray<float>, ResizeArray<string>> option
+    culling: U2<bool, CullingConfiguration> option
   }
 
   type XAxisConfiguration = {
