@@ -1,7 +1,7 @@
 namespace Fable.C3
 open System
 open Fable.Core
-open Fable.Import.Browser
+open Browser.Types
 
 [<AutoOpen>]
 module Defintiion =

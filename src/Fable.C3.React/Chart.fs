@@ -1,11 +1,9 @@
 namespace Fable.C3
 
 open Fable.Core
-open Fable.Import
-open Fable.Import.Browser
-open Fable.Import.React
-open Fable.Helpers.React
-open Fable.Helpers.React.Props
+open Browser.Types
+open Fable.React
+open Fable.React.Props
 open Fable.C3
 
 module React =
@@ -18,7 +16,7 @@ module React =
   type Chart(initialProps) =
     inherit PureComponent<ChartProps, obj>(initialProps)
     let mutable chart: ChartAPI option =  None
-    let mutable chartElement: Browser.HTMLElement option =  None
+    let mutable chartElement: HTMLElement option =  None
 
     member this.generateChart config =
       chart <- Some (c3.generate config)
@@ -36,7 +34,7 @@ module React =
       | None -> ()
 
     member this.mountedElement (element:Element) =
-      chartElement <- Some (element :?> Browser.HTMLElement)
+      chartElement <- Some (element :?> HTMLElement)
 
     member this.getColumnNames (columnData: ResizeArray<PrimitiveArray> option) =
       match columnData with

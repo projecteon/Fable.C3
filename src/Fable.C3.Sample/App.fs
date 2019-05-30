@@ -2,8 +2,8 @@ module Fable.C3.Sample.App
 
 open Elmish
 open Elmish.React
-open Fable.Helpers.React
-open Fable.Helpers.React.Props
+open Fable.React
+open Fable.React.Props
 
 open Fable.C3.Sample.Data
 open Fable.C3
@@ -64,6 +64,6 @@ let view (model:Model) dispatch =
 
 // App
 Program.mkProgram init update view
-|> Program.withReact "elmish-app"
+|> Program.withReactBatched "elmish-app"
 |> Program.withConsoleTrace
 |> Program.run
